@@ -9,6 +9,12 @@ FlashLite1.1相当のSWFをHTML5で動くアニメーションにコンバート
 特にFlashが動かないiOS上で最も最適されて動くことを意識しています
 
 
+License
+------------------------------------
+
+The MIT License
+http://www.opensource.org/licenses/mit-license.html
+
 
 ディレクトリ構成
 ------------------------------------
@@ -90,16 +96,16 @@ PHPコンバートスクリプトのオプション
 Usage: $ /usr/bin/env php parser/php/bin/convert_swf.php <option> [swfname] [output directory]
 
 Options:
-  --help, -h, -?                 ヘルプを表示します
-  --version, -v                  バージョンを表示します
-  --compress, -c                 圧縮オプションを使います(SVGをzlib圧縮してsvgzとします)
-  --compact, --minimum, -m       ファイル最小化オプションを使います(ムービークリップによらず可能な限りファイル数を最小にします)
-  --swf, -f                      変換対象のSWFファイル名(パラメータでも構いません)
-  --output-dir, --save-dir, -o   保存先ディレクトリ(パラメータでも構いません)
+    --help, -h, -?                 ヘルプを表示します
+    --version, -v                  バージョンを表示します
+    --compress, -c                 圧縮オプションを使います(SVGをzlib圧縮してsvgzとします)
+    --compact, --minimum, -m       ファイル最小化オプションを使います(ムービークリップによらず可能な限りファイル数を最小にします)
+    --swf, -f                      変換対象のSWFファイル名(パラメータでも構いません)
+    --output-dir, --save-dir, -o   保存先ディレクトリ(パラメータでも構いません)
 
 Arguments:
-  swfname                        変換対象のSWFファイル名(Optionでも構いません)
-  output directory               保存先ディレクトリ(Optionでも構いません)
+    swfname                        変換対象のSWFファイル名(Optionでも構いません)
+    output directory               保存先ディレクトリ(Optionでも構いません)
 
 
 
