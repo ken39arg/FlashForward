@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Swf on iPhone</title>
+    <style type="text/css">
+    * {
+      margin: 0;
+      padding:0;
+    }
+    #loading {
+      background-color: #000;
+      text-align: center;
+      vertical-align: middle;
+      width: 550px;
+      height: 400px;
+      position: relative; 
+      padding-top: 250px;
+    }
+    #title {display: none}
+    #footer {display: none}
+    body {text-align: center}
+    </style>
+  </head>
+  <body>
+  <div data-role="page">
+    <header data-role="header">
+      <h1 id="title">Flash to iPhone</h1>
+    </header>
+    <div id="screen" width=550 height=400>
+      <p id="loading"><img src="https://github.com/ken39arg/FlashForward/raw/master/runtime/javascript/img/loadinfo.net.gif"></p>
+    </div>
+    <footer data-role="footer">
+      <p id="footer">Kensaku Araga @ kayac inc.</p> 
+    </footer>
+  </div>
+  <script type="text/javascript" src="https://raw.github.com/ken39arg/FlashForward/master/runtime/javascript/js/bin/0.0.1/flashforward.min.js"></script>
+  <script type="text/javascript">
+    // Canvasモードにする場合は?canvasを付ける
+    var type = location.search.replace(/^\?/,"");
+    if (type != "canvas" && type != "svg") type = "svg";
+
+    // プレイヤー読み込み
+    var player = new FlashForward.Player("slides/01/index.json", "screen", type);
+    player.play();
+
+    // キーイベントをcallに割当
+    document.onkeydown = function (ev) {
+      switch (ev.keyCode) {
+      case 39:
+      case 40:
+      case 13:
+        if (player.context.stage) {
+          player.context.stage.callAction("next");
+        }
+        break;
+      case 8:
+      case 37:
+      case 38:
+        if (player.context.stage) {
+          player.context.stage.callAction("back");
+        }
+        break;
+      }
+    };
+  </script>
+  </body>
+</html>

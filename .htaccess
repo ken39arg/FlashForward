@@ -1,0 +1,6 @@
+AddType image/svg+xml svg svgz
+AddEncoding gzip .svgz .gz
+<FilesMatch "(\.json|\.json\.gz|\.js|\.js\.gz)$">
+  ForceType text/javascript
+</FilesMatch>
+AddOutputFilterByType DEFLATE text/javascript application/x-javascript

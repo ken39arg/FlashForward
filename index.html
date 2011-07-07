@@ -3,31 +3,9 @@
 <head>
   <meta charset='utf-8'>
 
-  <title>ken39arg/FlashForward @ GitHub</title>
+  <title>FlashForward @ GitHub</title>
 
-  <style type="text/css">
-    body {
-      margin-top: 1.0em;
-      background-color: #9a2723;
-      font-family: Helvetica, Arial, FreeSans, san-serif;
-      color: #ffffff;
-    }
-    #container {
-      margin: 0 auto;
-      width: 700px;
-    }
-    h1 { font-size: 3.8em; color: #65d8dc; margin-bottom: 3px; }
-    h1 .small { font-size: 0.4em; }
-    h1 a { text-decoration: none }
-    h2 { font-size: 1.5em; color: #65d8dc; }
-    h3 { text-align: center; color: #65d8dc; }
-    a { color: #65d8dc; }
-    .description { font-size: 1.2em; margin-bottom: 30px; margin-top: 30px; font-style: italic;}
-    .download { float: right; }
-    pre { background: #000; color: #fff; padding: 15px;}
-    hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
-    .footer { text-align:center; padding-top:30px; font-style: italic; }
-  </style>
+  <link rel="stylesheet" href="css/main.css" /> 
 </head>
 
 <body>
@@ -42,8 +20,7 @@
         <img border="0" width="90" src="http://github.com/images/modules/download/tar.png"></a>
     </div>
 
-    <h1><a href="http://github.com/ken39arg/FlashForward">FlashForward</a>
-      <span class="small">by <a href="http://github.com/ken39arg">ken39arg</a></span></h1>
+    <h1><a href="http://github.com/ken39arg/FlashForward">FlashForward</a></h1>
 
     <div class="description">
       FlashLite1.1 to HTML5 Animation project
@@ -51,6 +28,16 @@
 
     <h2>License</h2>
 <p>MIT</p>
+
+    <h2>Slide</h2>
+      <div id="slide01" width=550 height=400>
+        <p id="loading"><img src="https://github.com/ken39arg/FlashForward/raw/master/runtime/javascript/img/loadinfo.net.gif"></p>
+      </div>
+      <p>show fullscreen. (<a href="slide.html?svg">SVG</a>, <a href="slide.html?canvas">Canvas</a>, <a href="slides/01.swf">SWF</a>)</p>
+
+<h2>Gallery</h2>
+<p>FlashLite1.1 to HTML gallery is <a href="gallery.html">hear</a><br/><br/>      </p>
+
 <h2>Authors</h2>
 <p>Kensaku Araga (araga-kensaku@kayac.com)<br/><br/>      </p>
 <h2>Contact</h2>
@@ -75,5 +62,30 @@
   </div>
 
   
+  <script type="text/javascript" src="https://raw.github.com/ken39arg/FlashForward/master/runtime/javascript/js/bin/0.0.1/flashforward.min.js"></script>
+  <script type="text/javascript">
+    var player = new FlashForward.Player("slides/01/index.json", "slide01", "svg", true);
+    player.play();
+
+    // キーイベントをcallに割当
+    document.onkeydown = function (ev) {
+      switch (ev.keyCode) {
+      case 39:
+      case 40:
+      case 13:
+        if (player.context.stage) {
+          player.context.stage.callAction("next");
+        }
+        break;
+      case 8:
+      case 37:
+      case 38:
+        if (player.context.stage) {
+          player.context.stage.callAction("back");
+        }
+        break;
+      }
+    };
+  </script>
 </body>
 </html>

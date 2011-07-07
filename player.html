@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Player | FlashForward @ GitHub</title>
+    <link rel="stylesheet" href="css/main.css" /> 
+    <style type="text/css">
+    .loading {
+      background-color: #000;
+      text-align: center;
+      vertical-align: middle;
+      width: 240px;
+      height: 160px;
+      position: relative; 
+      padding-top: 140px; 
+    }
+    .loadinfo {
+      top: 150px;
+    }
+    </style>
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> -->
+  </head>
+  <body>
+  <div id="container">
+    <h2 id="title">Non Title</h2>
+    <h3>SVG</h3>
+    <div id="svg" width=240 height=300>
+      <p class="loading"><img class="loadinfo" src="https://github.com/ken39arg/FlashForward/raw/master/runtime/javascript/img/loadinfo.net.gif"></p>
+    </div>
+    <h3>Canvas</h3>
+    <div id="canvas" width=240 height=300>
+      <p class="loading"><img class="loadinfo" src="https://github.com/ken39arg/FlashForward/raw/master/runtime/javascript/img/loadinfo.net.gif"></p>
+    </div>
+    <h3>SWF</h3>
+    <div id="swf" width=240 height=300>
+      <p class="loading"><img class="loadinfo" src="https://github.com/ken39arg/FlashForward/raw/master/runtime/javascript/img/loadinfo.net.gif"></p>
+    </div>
+    <p>return <a href="gallery.html">gallery</a></p>
+    <div class="footer">
+       get the source code on GitHub : <a href="http://github.com/ken39arg/FlashForward">ken39arg/FlashForward</a>
+    </div>
+  </div>
+  <script type="text/javascript" src="https://raw.github.com/ken39arg/FlashForward/master/runtime/javascript/js/bin/0.0.1/flashforward.min.js"></script>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>
+  <script type="text/javascript">
+    // Canvasモードにする場合は?canvasを付ける
+    var swf = location.search.replace(/^\?/,"");
+    swf = swf ? swf : "x_shape_01";
+
+    document.title = swf + " | " + document.title;
+    document.getElementById("title").innerHTML = swf;
+    var svg_player = new FlashForward.Player("gallery/ff/"+swf+"/index.json", "svg", "svg", true);
+    var cvs_player = new FlashForward.Player("gallery/ff/"+swf+"/index.json", "canvas", "canvas", true);
+    svg_player.play();
+    cvs_player.play();
+    swfobject.embedSWF("gallery/swf/"+swf+".swf", "swf", "240", "300", "9.0.0");
+  </script>
+  </body>
+</html>
