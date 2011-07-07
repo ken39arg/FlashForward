@@ -1,8 +1,16 @@
 /**
+ * Player Opbject
+ *
+ * @param {string} url Url for swf file.
+ * @param {string} target Target dom id.
+ * @param {Object} rendererType Rendering type is Renderer Object or "svg" or "canvas".
+ * @param {boolean} fixDisplay If you want to fix display then true.
+ * @param {boolean} isDev If you want to develop mode then true.
+ * @param {integer} timeout If you use isDev=true then stop player time.
  * @constructor
  * @inherits ff.EventDispatcher
  */
-ff.Player = function(url, target, rendererType, isDev, timeout) {
+ff.Player = function(url, target, rendererType, fixDisplay, isDev, timeout) {
   var targetDom = document.getElementById(target);
   initDebug(
     timeout !== undefined ? timeout: window.DEV_TIMEOUT,
@@ -27,6 +35,7 @@ ff.Player = function(url, target, rendererType, isDev, timeout) {
   this.target = target;
   this.dom = document.createElementNS("", "div");
   this.dom.setAttributeNS("", "id", this.target);
+  this.fixDisplay = !!fixDisplay;
   this.intervalId = null;
 };
 
@@ -45,9 +54,11 @@ ff.Player.prototype.onLoad = function(request) {
   this.context.loadDictionary(data.dict);
   this.updateScreenSize();
   // resize
-  window.onresize = function () {
-    obj.updateScreenSize();
-  };
+  if (!this.fixDisplay) {
+    window.onresize = function () {
+      obj.updateScreenSize();
+    };
+  }
   this.startAt = Date.now();
   this.loading();
 };
@@ -93,10 +104,12 @@ ff.Player.prototype.next = function () {
 
 ff.Player.prototype.updateScreenSize = function() {
   var screenSize = this.screenSize;
-  if (document.documentElement && document.documentElement.clientWidth !== 0) {
-    screenSize = { width: document.documentElement.clientWidth, height: document.documentElement.clientHeight };
-  } else if (document.body) {
-    screenSize = { width: document.body.clientWidth, height: document.body.clientHeight };
+  if (!this.fixDisplay) {
+    if (document.documentElement && document.documentElement.clientWidth !== 0) {
+      screenSize = { width: document.documentElement.clientWidth, height: document.documentElement.clientHeight };
+    } else if (document.body) {
+      screenSize = { width: document.body.clientWidth, height: document.body.clientHeight };
+    }
   }
   this.context.ratio = this.context.stage.rect.width() / screenSize.width;
   if (this.context.stage.rect.height() / this.context.ratio > screenSize.height) {
