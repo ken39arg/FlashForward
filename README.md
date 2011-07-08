@@ -16,6 +16,13 @@ The MIT License
 http://www.opensource.org/licenses/mit-license.html
 
 
+Information
+------------------------------------
+
+- [Project Page](http://ken39arg.github.com/FlashForward/)
+- [Galley](http://ken39arg.github.com/FlashForward/gallery.html)
+
+
 ディレクトリ構成
 ------------------------------------
 
@@ -57,7 +64,7 @@ http://www.opensource.org/licenses/mit-license.html
 なお、JavaScriptはSVCとcanvasで実行できますが、現在のところ、SVGが最適です. 
 (2011/07/05現在、canvasにはまだ不具合も有ります)
 
-PHPプログラムはMedia_SWF(https://github.com/ken39arg/Media_SWF)に大幅に修正を加えたものになります。
+PHPプログラムは[Media_SWF](https://github.com/ken39arg/Media_SWF)に大幅に修正を加えたものになります。
 Media_SWFとの互換はなくなっている可能性が有ります
 
 
@@ -93,9 +100,12 @@ PHPコンバートスクリプトのオプション
 
     $ php parser/php/bin/convert_swf.php --help
 
-Usage: $ /usr/bin/env php parser/php/bin/convert_swf.php <option> [swfname] [output directory]
+### Usage
 
-Options:
+    $ /usr/bin/env php parser/php/bin/convert_swf.php <option> [swfname] [output directory]
+
+### Options
+
     --help, -h, -?                 ヘルプを表示します
     --version, -v                  バージョンを表示します
     --compress, -c                 圧縮オプションを使います(SVGをzlib圧縮してsvgzとします)
@@ -103,7 +113,8 @@ Options:
     --swf, -f                      変換対象のSWFファイル名(パラメータでも構いません)
     --output-dir, --save-dir, -o   保存先ディレクトリ(パラメータでも構いません)
 
-Arguments:
+### Arguments
+
     swfname                        変換対象のSWFファイル名(Optionでも構いません)
     output directory               保存先ディレクトリ(Optionでも構いません)
 
