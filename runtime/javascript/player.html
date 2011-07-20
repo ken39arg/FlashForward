@@ -36,9 +36,9 @@
     </footer>
   </div>
   <!-- // 開発中用
-  <script type="text/javascript" src="js/import.js"></script>
-  -->
   <script type="text/javascript" src="js/bin/0.0.1/flashforward.min.js"></script>
+  -->
+  <script type="text/javascript" src="js/import.js"></script>
   <script type="text/javascript">
     var param = {};
     var _q = location.search.replace(/^\?/,"").split("&");
@@ -56,7 +56,7 @@
     document.title = swf + "-HTML5("+type+")";
     document.getElementById("title").innerHTML = swf;
     document.getElementById("sub-title").innerHTML = "FlashForward|HTML5("+type+")";
-    var player = new FlashForward.Player("ff/"+swf+"/index.json", "screen", type);
+    var player = new FlashForward.Player("ff/"+swf+"/index.json", "screen", type, false, true);
     player.play();
   </script>
   </body>

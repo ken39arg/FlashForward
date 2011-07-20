@@ -18,17 +18,18 @@ var initDebug = function(timeout, isDev) {
   }
 };
 
-var loadContent = function (url, obj, callback, argments) {
-  var complete = false;
+/** XHR function. after complete, call callback function with obj on this with argments */
+var loadContent = function (url, obj, callback, args) {
+  var complete = false; // TODO: is this really needed?
   var request = new XMLHttpRequest();
-  if (argments == null) {
-    argments = [];
+  if (args == null) {
+    args = [];
   }
   request.onreadystatechange = function () {
     if (!complete && request.readyState === 4) {
       complete = true;
-      argments.unshift(request);
-      callback.apply(obj, argments);
+      args.unshift(request); // insert "request" at the top of args
+      callback.apply(obj, args);
     }
   };
   request.open("GET", url, true);
