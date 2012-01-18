@@ -86,7 +86,7 @@ class Media_SWF_Tag_DisplayObjectContainer extends Media_SWF_Tag
       if (!in_array($characterId, $this->childIds)) {
         $this->childIds[] = $characterId;
       }
-      if ($object->firstParentId === false && $this->characterId) {
+      if ($object && ($object->firstParentId === false) && $this->characterId) {
         $object->firstParentId = $this->characterId;
       }
       if ($tag->hasField('Name')) {
