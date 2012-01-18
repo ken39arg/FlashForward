@@ -98,13 +98,14 @@ class Media_SWF_Tag_DefineBitsLossless extends Media_SWF_Tag
           $color_palette[$i] = imagecolorallocatealpha($im, $r, $g, $b, $a);
         }
       }
-      // widthを32bitで丸める(must be rounded up to the next 32-bit word boundary)
-      $width = ($width + 3) & -4;
+      // widthの読み出しbyte数を32bitで丸める(must be rounded up to the next 32-bit word boundary)
+      $padding = (($width + 3) & -4) - $width;
       for ($y = 0; $y < $height; ++$y) {
         for ($x = 0; $x < $width; ++$x) {
           $bi = $bitmapReader->getUI8();
           imagesetpixel($im, $x, $y, $color_palette[$bi]);
         }
+        $bi = $bitmapReader->incrementOffset($padding, 0); // skip
       }
     } else {
       // non parette
