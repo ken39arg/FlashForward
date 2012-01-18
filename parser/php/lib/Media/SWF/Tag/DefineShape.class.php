@@ -1,4 +1,5 @@
 <?php
+
 class Media_SWF_Tag_DefineShape extends Media_SWF_Tag
 {
   protected
@@ -152,18 +153,7 @@ class Media_SWF_Tag_DefineShape extends Media_SWF_Tag
           break;
       }
     }
-    $elements = array_filter($elements, function ($element) {
-      if ($element == null) {
-        return false;
-      }
-      if ($element instanceof Media_SVG_Null) {
-        return false;
-      }
-      if ($element instanceof Media_SVG_Path && $element->count() === 0) {
-        return false;
-      }
-      return true;
-    });
+    $elements = array_filter($elements, 'Media_SWF_Tag_DefineShape::hasSVGPath');
 
     if (count($elements) === 1) {
       $svg_element = array_shift($elements);
@@ -176,6 +166,19 @@ class Media_SWF_Tag_DefineShape extends Media_SWF_Tag
     $svg_element->set('id', $this->getElementIdString());
     $svg_element->set('viewBox', $bounds["Xmin"] . " " . $bounds["Ymin"] . " " . $bounds["Xmax"] . " " . $bounds["Ymax"]);
     return $svg_element;
+  }
+
+  static private function hasSVGPath($element) {
+    if ($element == null) {
+      return false;
+    }
+    if ($element instanceof Media_SVG_Null) {
+      return false;
+    }
+    if ($element instanceof Media_SVG_Path && $element->count() === 0) {
+      return false;
+    }
+    return true;
   }
 
   protected function createStyleList($style, &$elements = array())
